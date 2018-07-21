@@ -1,0 +1,19 @@
+{% extends 'music/base.html' %}
+
+{% block body %}
+    <br>
+    <h3> Albums</h3>
+    {% if object_list %}
+        <ul>
+            {% for al in object_list %}
+                <li>
+                    <a href="{% url 'music:detail' al.id %}">{{ al.album_title }}</a>
+                    <a class="fas fa-trash-alt" href="{% url 'music:delete' al.pk %}"></a>
+                    <a class="fas fa-edit" href="{% url 'music:update' al.pk %}"></a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3> NO ALBUMS!!</h3>
+    {% endif %}
+{% endblock %}
