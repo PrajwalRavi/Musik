@@ -1,0 +1,35 @@
+{% extends 'music/base.html' %}
+
+{% block title %}
+    {{ album.album_title }}
+{% endblock %}
+
+<script>
+    function play(song) {
+        console.log(song)
+    }
+</script>
+{% block body %}
+
+    <div class="row">
+        <div class="card col-sm-3 shadow" style="padding: 10px; margin-left: 40px">
+            <img class="card-img-top" src="{{ album.logo.url }}" alt="Album logo">
+            <div class="card-body">
+                <h1 class="card-title" style="font-family: 'Alegreya', serif;">{{ album.album_title }}</h1>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            {% for song in album.song_set.all %}
+                <div class="container-fluid border border-info rounded shadow"
+                     style="padding: 15px; margin: 10px; font-family: 'Dancing Script', cursive;">
+                    <h2>{{ song.song_title }}</h2>
+{#                    <h5>{{ song.song_file.url }}</h5>#}
+                    <audio controls>
+                        <source src="{{ song.song_file.url }}" type="audio/mp3">
+                    </audio>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

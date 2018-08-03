@@ -1,6 +1,38 @@
 {% extends 'music/base.html' %}
 
 {% block body %}
+    <div class="card-columns">
+        {% if object_list %}
+            {% for album in object_list %}
+                <div class="card bg-light ">
+                    <img class="card-img-top img-fluid" src="{{ album.logo.url }}">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ album.album_title }}</h4>
+                        <p class="card-text">by {{ album.artist }}</p>
+                        <a href="{% url 'music:detail' album.id %}" class="fas fa-eye"
+                           style="margin-right:20px; font-size: 22px; color: black"></a>
+                        <a class="fas fa-trash-alt" style="font-size: 25px; color: red"
+                           href="{% url 'music:delete' album.id %}"></a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-success">
+                <strong>No Albums present. </strong><a href="{% url 'music:create' %}" class="alert-link">Insert new
+                album?</a>.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+{% comment %}
+
     <br>
     <h3> Albums</h3>
     {% if object_list %}
@@ -16,4 +48,4 @@
     {% else %}
         <h3> NO ALBUMS!!</h3>
     {% endif %}
-{% endblock %}
+{% endblock %}{% endcomment %}
