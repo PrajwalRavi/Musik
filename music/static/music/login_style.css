@@ -1,0 +1,25 @@
+body{
+    background: url("images/music_bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+form{
+    margin: 10px;
+}
+
+label{
+    font-family: 'Merienda', serif;
+    font-size: 22px;
+    color: white;
+}
+
+img{
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+html, body {
+  height: 100%;
+}

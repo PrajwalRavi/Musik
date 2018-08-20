@@ -5,20 +5,22 @@
     <title>{% block title %}Musik{% endblock %}</title>
     {% load staticfiles %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Alegreya:700i|Dancing+Script" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'music/base_style.css' %}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Fondamento|Kaushan+Script|Alegreya:700i|Dancing+Script|Merienda">
+    <link rel="icon" href="{% static 'music/images/fav.png' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    {% block styles %}
+    {% endblock %}
 </head>
 
 <body>
 {#Navigation bar#}
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark"  {% comment %}style="background-color: #ff8128"{% endcomment %}>
+    <div class="container-fluid" {% comment %} style="background-color: #ff8128"{% endcomment %}>
 
         <a class="navbar-brand" href="index.html">Musik</a>
 
@@ -35,7 +37,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'music:songs' %}">
                         <span class="fas fa-music"></span>
                         Songs
                     </a>
@@ -56,7 +58,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'music:logout' %}">
                         <span class="fas fa-sign-out-alt"></span>
                         Logout
                     </a>

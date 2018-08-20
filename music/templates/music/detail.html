@@ -4,26 +4,31 @@
     {{ album.album_title }}
 {% endblock %}
 
-<script>
-    function play(song) {
-        console.log(song)
-    }
-</script>
+{% block styles %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/detail_style.css' %}">
+{% endblock %}
+
 {% block body %}
 
     <div class="row">
-        <div class="card col-sm-3 shadow" style="padding: 10px; margin-left: 40px">
-            <img class="card-img-top" src="{{ album.logo.url }}" alt="Album logo">
-            <div class="card-body">
-                <h1 class="card-title" style="font-family: 'Alegreya', serif;">{{ album.album_title }}</h1>
-            </div>
-        </div>
+        <div class="card col-sm-3 shadow">
+                    <a href="{% url 'music:detail' album.id %}">
+                        <img class="card-img-top img-fluid" src="{{ album.logo.url }}">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ album.album_title }}</h4>
+                        <p class="card-text">&ensp; - {{ album.artist }}</p>
+                        <a class="fas fa-trash-alt icons"
+                           href="{% url 'music:delete' album.id %}"></a>
+                        <a class="fas fa-pen icons" style="color: #4bff26;"
+                           href="{% url 'music:album_update' album.id %}"></a>
+                    </div>
+                </div>
         <div class="col-sm-8">
             {% for song in album.song_set.all %}
-                <div class="container-fluid border border-info rounded shadow"
-                     style="padding: 15px; margin: 10px; font-family: 'Dancing Script', cursive;">
+                <div class="song-container container-fluid border border-info rounded shadow">
                     <h2>{{ song.song_title }}</h2>
-{#                    <h5>{{ song.song_file.url }}</h5>#}
                     <audio controls>
                         <source src="{{ song.song_file.url }}" type="audio/mp3">
                     </audio>

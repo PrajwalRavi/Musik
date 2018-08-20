@@ -1,18 +1,25 @@
 {% extends 'music/base.html' %}
 
+{% block styles %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/index_style.css' %}">
+{% endblock %}
+
 {% block body %}
     <div class="card-columns">
         {% if object_list %}
             {% for album in object_list %}
-                <div class="card bg-light ">
-                    <img class="card-img-top img-fluid" src="{{ album.logo.url }}">
+                <div class="card border-dark">
+                    <a href="{% url 'music:detail' album.id %}">
+                        <img class="card-img-top img-fluid" src="{{ album.logo.url }}">
+                    </a>
                     <div class="card-body">
                         <h4 class="card-title">{{ album.album_title }}</h4>
-                        <p class="card-text">by {{ album.artist }}</p>
-                        <a href="{% url 'music:detail' album.id %}" class="fas fa-eye"
-                           style="margin-right:20px; font-size: 22px; color: black"></a>
-                        <a class="fas fa-trash-alt" style="font-size: 25px; color: red"
+                        <p class="card-text">&ensp; - {{ album.artist }}</p>
+                        <a class="fas fa-trash-alt icons"
                            href="{% url 'music:delete' album.id %}"></a>
+                        <a class="fas fa-pen icons" style="color: #4bff26;"
+                           href="{% url 'music:album_update' album.id %}"></a>
                     </div>
                 </div>
             {% endfor %}
@@ -24,28 +31,3 @@
         {% endif %}
     </div>
 {% endblock %}
-
-
-
-
-
-
-
-{% comment %}
-
-    <br>
-    <h3> Albums</h3>
-    {% if object_list %}
-        <ul>
-            {% for al in object_list %}
-                <li>
-                    <a href="{% url 'music:detail' al.id %}">{{ al.album_title }}</a>
-                    <a class="fas fa-trash-alt" href="{% url 'music:delete' al.pk %}"></a>
-                    <a class="fas fa-edit" href="{% url 'music:update' al.pk %}"></a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <h3> NO ALBUMS!!</h3>
-    {% endif %}
-{% endblock %}{% endcomment %}

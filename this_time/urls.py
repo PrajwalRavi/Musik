@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
-from django.contrib import admin
+from django.contrib import admin,auth
 
 urlpatterns = [
+    url(r'^', include('django.contrib.auth.urls')),
     url(r'^music/', include('music.urls')),
     url(r'^admin/', admin.site.urls),
 ]

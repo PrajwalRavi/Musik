@@ -1,0 +1,26 @@
+.card-title {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 50px;
+}
+
+.card {
+    padding: 10px;
+    margin-left: 40px;
+}
+
+.card-body{
+    font-family: 'Fondamento', cursive;
+    font-size: 30px;
+}
+
+.icons {
+    margin-right: 15px;
+    font-size: 25px;
+    color: #ff401b;
+}
+
+.song-container {
+    padding: 15px;
+    margin: 10px;
+    font-family: 'Dancing Script', cursive;
+}
