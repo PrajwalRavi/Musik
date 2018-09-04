@@ -20,4 +20,5 @@
 .card-body{
     font-family: 'Fondamento', cursive;
     font-size: 30px;
+    background: url("images/tile_background.jpg");
 }

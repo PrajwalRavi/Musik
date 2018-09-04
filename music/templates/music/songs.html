@@ -4,11 +4,14 @@
     Songs
 {% endblock %}
 
-{% block body %}
+{% block styles %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/detail_style.css' %}">
+{% endblock %}
 
+{% block body %}
 {% for song in song_list %}
-    <div class="col-sm-12 container-fluid border border-info rounded shadow"
-         style="padding: 15px; margin: 20px; font-family: 'Dancing Script', cursive;">
+    <div class="song-container col-sm-11 container-fluid border border-info rounded shadow">
         <h2>{{ song.song_title }}</h2>
         <audio controls>
             <source src="{{ song.song_file.url }}" type="audio/mp3">
